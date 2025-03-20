@@ -25,7 +25,7 @@
             </aside>
             
             <!-- Main Content -->
-            <main class="flex-1 p-10 overflow-y-auto">
+            <main class="flex-1 p-10 overflow-y-auto bg-[#353638]">
                 <!-- Flash Message -->
                 <% let message = error || success || ''; %>
                 <% let messageType = error ? 'error' : success ? 'success' : ''; %> 
@@ -42,16 +42,16 @@
 
                 <!-- Header -->
                 <div class="flex justify-between items-center mb-5">
-                    <h1 class="text-3xl font-semibold">Product Management</h1>
+                    <h1 class="text-3xl font-semibold text-white">Product Management</h1>
                     <a href="/owners/deleteall" class="text-red-500 hover:underline">Delete All</a>
                 </div>
 
                 <!-- Products Grid -->
-                <div class="grid grid-cols-5 gap-6">
+                <div class="grid grid-cols-5 gap-6 w-[75rem]">
                     <% products.forEach(function(product) { %>
                         <div class="bg-white shadow-md rounded-lg overflow-hidden">
                             <div class="h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                                <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="Product Image" />
+                                <img class="w-[10rem] h-[10rem] rounded-md" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="Product Image" />
                             </div>
                             <div class="p-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
                                 <h3 class="font-semibold"><%= product.name %></h3>

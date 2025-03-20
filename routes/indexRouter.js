@@ -14,8 +14,7 @@ router.get("/", (req, res) => {
 
 router.post('/createOrder', createOrder);
 router.post('/verifyOrder', verifyPayment);
-
-
+        
 router.get("/shop", isloggedin, async (req, res) => {
     try {
         let products = await productModel.find();
@@ -83,7 +82,7 @@ router.get("/decrease/:userId/:cartId", isloggedin, async (req, res) => {
         const cartItem = user.cart.find(item => item._id.toString() === cartId);
         if (!cartItem) {
             return res.status(404).json({ message: "Cart item not found" });
-        }
+        }           
         if (cartItem.quantity > 1) {
             await userModel.findOneAndUpdate(
                 { _id: userId, "cart._id": cartId },
@@ -101,8 +100,8 @@ router.get("/decrease/:userId/:cartId", isloggedin, async (req, res) => {
     } catch (error) {
         console.error("Error updating cart:", error);
         res.status(500).json({ message: "Internal server error" });
-    }
-});
+    }                                  
+});  
 
 router.get("/cart", isloggedin, async (req, res) => {
     try {
