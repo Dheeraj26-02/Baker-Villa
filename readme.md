@@ -63,18 +63,21 @@ A web-based e-commerce application for managing and purchasing bakery items, wit
 
 # Dependencies
 
-{
-  "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.13",
-    "bcrypt": "^5.0.1",
-    "jsonwebtoken": "^9.0.0",
-    "ejs": "^3.1.6",
-    "tailwindcss": "^3.0.23",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.6"
-  }
-}
+- Express.js - Web framework.
+
+- Mongoose - MongoDB ORM.
+
+- Bcrypt - Password hashing.
+
+- JSON Web Token (JWT) - User authentication.
+
+- EJS - Templating engine.
+
+- Tailwind CSS - Front-end styling.
+
+- Connect-Flash - Flash messages.
+
+- Cookie-Parser - Cookie handling.
 
 # Future Improvements
 
