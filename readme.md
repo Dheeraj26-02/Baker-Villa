@@ -1,65 +1,65 @@
-# Baker Villa - Bakery Website
+# Baker Villa - Bakery Website 🎂🍪
 
 A web-based e-commerce application for managing and purchasing bakery items, with features for user authentication, product management, and shopping cart functionality.
 
-Table of Contents
+# Table of Contents
 
-Features
+- Features
 
-Installation
+- Installation
 
-Dependencies
+- Dependencies
 
-Future Improvements
+- Future Improvements
 
 # Features
 
 # User Authentication
 
-User registration and login.
+- User registration and login.
 
-JWT-based authentication for secure access.
+- JWT-based authentication for secure access.
 
-Flash messages for errors and success notifications.
+- Flash messages for errors and success notifications.
 
 # Product Management
 
-View all bakery products available in the shop.
+- View all bakery products available in the shop.
 
-Search and sort products (by popularity or creation date).
+- Search and sort products (by popularity or creation date).
 
-Add, edit, and manage products (admin-only functionality).
+- Add, edit, and manage products (admin-only functionality).
 
 # Shopping Cart
 
-Add or remove items from the cart.
+- Add or remove items from the cart.
 
-View cart items and proceed to checkout.
+- View cart items and proceed to checkout.
 
 # Admin Dashboard
 
-Manage bakery products and categories.
+- Manage bakery products and categories.
 
 # User Profile
 
-View and edit personal information.
+- View and edit personal information.
 
 # Dynamic UI
 
-Responsive design powered by Tailwind CSS.
+- Responsive design powered by Tailwind CSS.
 
-Interactive features such as live search and hover effects.
+- Interactive features such as live search and hover effects.
 
-Installation And Start the Application
+- Installation And Start the Application
 
 # Clone the repository
-git clone "https://github.com/yourusername/Baker_Villa.git"
+- git clone "https://github.com/Dheeraj26-02/Baker_Villa.git"
 
 # Install dependencies
-npm install
+- npm install
 
 # Start the application
-npm start
+- npm start
 
 # Dependencies
 
