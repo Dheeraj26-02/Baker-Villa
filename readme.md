@@ -1,8 +1,13 @@
+
 # Baker Villa - Bakery Website 🎂🍪
 
 A web-based e-commerce application for managing and purchasing bakery items, with features for user authentication, product management, and shopping cart functionality.
 
 - Website:- "https://bakers-villa.vercel.app/"
+## Screenshots
+
+![App Screenshot](https://drive.google.com/file/d/1bp7or30m9Ln4CWwMv7SFbGBfAnoHqV0N/view?usp=sharing)
+
 
 # Table of Contents
 
