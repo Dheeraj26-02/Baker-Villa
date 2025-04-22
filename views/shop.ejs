@@ -55,7 +55,7 @@
                 <div class="p-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>] flex justify-between items-center">
                     <div>
                         <h3 class="font-semibold"><%= product.name %></h3>
-                        <h4 class="text-lg font-medium">₹ <%= product.price %></h4>
+                        <h4 class="text-lg font-medium">₹ <%= product.price-product.discount %></h4>
                     </div>
                     <a href="/addtocart/<%= product._id %>" class="text-red-500 hover:underline">Add</a>
                 </div>
