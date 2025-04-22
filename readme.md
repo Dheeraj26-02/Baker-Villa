@@ -3,7 +3,7 @@
 
 A web-based e-commerce application for managing and purchasing bakery items, with features for user authentication, product management, and shopping cart functionality.
 
-- Website:- "https://bakers-villa.vercel.app/"
+- Website:- "https://baker-villa.vercel.app/"
 ## Screenshots
 
 ![App Screenshot](public/Login.png)
