@@ -156,6 +156,9 @@ router.get("/addtocart/:productid", isloggedin, async (req, res) => {
         res.redirect("/shop");
     }
 });
+router.get("/products/customization", isloggedin, async (req, res) => {
+  res.render("customization");
+});
 
 
 module.exports = router;

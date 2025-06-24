@@ -11,6 +11,8 @@ const ownersRouter = require('./routes/ownersRouter');
 const usersRouter = require('./routes/usersRouter');
 const productsRouter = require('./routes/productsRouter');
 const indexRouter = require('./routes/indexRouter');
+const customiseRouter = require('./routes/customiseRouter');
+
 const db = require("./config/mongoose-connection");
 
 
@@ -38,4 +40,5 @@ app.use("/",indexRouter);
 app.use("/owners",ownersRouter);
 app.use("/users",usersRouter);
 app.use("/products",productsRouter);
+app.use("/customise",customiseRouter);
 app.listen(5000);
