@@ -4,7 +4,6 @@ const isloggedin = require("../middlewares/isLoggedin");
 const productModel = require("../models/product-model");
 const userModel = require("../models/user-model");
 const orderModel = require("../models/orders-model");
-
 const { createOrder, verifyPayment } = require('../controllers/payment');
 router.get("/", (req, res) => {
     let error = req.flash("error");

@@ -5,8 +5,8 @@ const customiseSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     flavour:{type:String, required:true},
     weight:{type:Number, required:true},
-    price:{type:Number, required:true},
+    amount:{type:Number, required:true},
     userId:{type:mongoose.Schema.Types.ObjectId, ref:"user", required:true}
 });
 
-module.exports = mongoose.model('customiseCake',customiseSchema);
+module.exports = mongoose.model('customiseModel',customiseSchema);

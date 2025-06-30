@@ -94,8 +94,7 @@
     <div class="flex flex-col items-center justify-center mt-20 gap-10">
         <h1 class="text-3xl">Create Your Custom Photo Cake 🎂</h1>
 
-        <form id="cakeForm" class="flex flex-col gap-5" enctype="multipart/form-data" method="POST"
-            action="/customise/customiseCake">
+        <form id="cakeForm" class="flex flex-col gap-5" enctype="multipart/form-data">
             <label>Flavour:</label>
             <select name="flavour" id="flavourSelect" class="bg-gray-100 text-black p-1 rounded-2xl">
                 <option value="chocolate">chocolate</option>
@@ -115,14 +114,14 @@
             <label>Upload Photo:</label>
             <input type="file" name="photo" accept="image/*" required class="rounded-2xl border-2"><br>
 
-            <h3>Total Price: ₹ &nbsp;<span name="price" id="price" class="text-2xl">--</span></h3>
-            <input type="hidden" name="price" id="priceInput">
+            <h3>Total Price: ₹ &nbsp;<span id="price" class="text-2xl">--</span></h3>
+            <input type="hidden" name="amount" id="priceInput">
 
 
-            <button type="submit" class="bg-[#16A34A] p-1 rounded-2xl">Add to Cart</button>
+            <button type="submit" id="payButton" class="bg-[#16A34A] p-1 rounded-2xl">Pay Now</button>
         </form>
     </div>
-
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         const priceData = {
             chocolate: { "0.5": 300, "1": 500, "2": 950, "3": 1400 },
@@ -151,6 +150,91 @@
 
         // Optional: Update once on load with default selection
         updatePrice();
+        document.getElementById("cakeForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+
+            const flavour = document.getElementById("flavourSelect").value;
+            const weight = document.getElementById("weightSelect").value;
+            const amount = document.getElementById("priceInput").value;
+            const photo = document.querySelector('input[name="photo"]').files[0];
+
+            const formData = new FormData();
+            formData.append("flavour", flavour);
+            formData.append("weight", weight);
+            formData.append("amount", amount);
+            formData.append("photo", photo);
+
+            try {
+                const res = await fetch("/customise/customiseCake", {
+                    method: "POST",
+                    body: formData,
+                });
+
+
+                const order = await res.json();
+
+
+                if (!order.success || !order.order_id || !order.amount || !order.key_id) {
+                    alert(order.message || "Failed to create order. Try again.");
+                    return;
+                }
+
+                if (typeof Razorpay === "undefined") {
+                    alert("Payment gateway not loaded. Please refresh and try again.");
+                    return;
+                }
+
+                const options = {
+                    key: order.key_id,
+                    amount: order.amount,
+                    currency: "INR",
+                    name: "Baker's-Villa",
+                    description: "Order Payment",
+                    order_id: order.order_id,
+                    user_email: order.user_email,
+                    handler: async function (response) {
+                        const verifyResponse = await fetch("/customise/verifyOrder", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                order_id: order.order_id,
+                                payment_id: response.razorpay_payment_id,
+                                signature: response.razorpay_signature
+                            })
+                        });
+
+                        const verifyResult = await verifyResponse.json();
+                        if (verifyResult.success) {
+                            window.location.href = `/order-success?order_id=${order.order_id}&payment_id=${response.razorpay_payment_id}`;
+                        } else {
+                            alert("Payment Verification Failed.");
+                        }
+                    },
+                    prefill: {
+                        name: "Customer",
+                        email: "customer@example.com"
+                    },
+                    theme: { color: "#3399cc" }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.on("payment.failed", response => {
+                    alert("Payment Failed: " + response.error.description);
+                });
+
+                rzp.open();
+            }
+            catch (err) {
+                console.error(err);
+                alert("something went sideways bro");
+            }
+        });
+
+
+
+
+
 
     </script>
 </body>
