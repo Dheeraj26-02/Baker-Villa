@@ -5,6 +5,7 @@ const productsModel = require("../models/product-model");
 const upload = require("../config/multer-config");
 const bcrypt = require("bcrypt");
 const ordersModel = require("../models/orders-model");
+const customiseModel = require("../models/customise-model");
 
 if (process.env.NODE_ENV === "production") {
     (async () => {
@@ -158,6 +159,17 @@ router.get("/admin/orders", isAuthenticated, async (req, res) => {
     } catch (err) {
         console.error(err);
         req.flash("error", "Failed to load orders");
+        res.redirect("/owners/admin");
+    }
+});
+router.get("/admin/customiseOrders", isAuthenticated, async (req, res) => {
+    try {
+        const orders = await customiseModel.find().populate("userId");; 
+        res.render("customiseOrder",{orders})       
+        // res.render("customiseOrder", { orders });
+    } catch (err) {
+        console.error(err);
+        req.flash("error", "Failed to load customised orders");
         res.redirect("/owners/admin");
     }
 });
